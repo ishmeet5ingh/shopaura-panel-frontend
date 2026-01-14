@@ -88,11 +88,11 @@ export const AuthProvider = ({ children }) => {
   // Logout user
   const logout = async () => {
     try {
-      await API.get('/auth/logout');
+      await API.post('/auth/logout');
       setUser(null);
       setIsAuthenticated(false);
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error('Logout failed:', error.response.data);
       // Still clear local state even if server fails
       setUser(null);
       setIsAuthenticated(false);
